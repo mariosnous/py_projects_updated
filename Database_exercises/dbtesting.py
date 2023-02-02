@@ -1,36 +1,51 @@
 import sqlite3
-from sqlite3 import Error
+# connect to database
+conn =sqlite3.connect('test.db')
+
+# create a cursor
+c = conn.cursor()
+
+# query the Database
+
+c.execute("SELECT rowid, * FROM customers")
+#print(c.fetchone())
+#c.fetchmany()
+#print(c.fetchmany(2))
+items = c.fetchall()
+for item in items:
+    print(item)
 
 
-import sqlite3
-conn = sqlite3.connect('test.db')
+# Looping through the DATA
+""" items = c.fetchall()
+for item in items:
+    print(f"{item[0]} -- {item[1]} -- {item[2]}") """
 
-def create_database():
-    print ("Opened database successfully")
-    return conn
-    
-def create_table(conn):
-    conn.execute('''CREATE TABLE COMPANY
-         (ID INT PRIMARY KEY     NOT NULL,
-         NAME           TEXT    NOT NULL,
-         AGE            INT     NOT NULL,
-         ADDRESS        CHAR(50),
-         SALARY         REAL);''')
-    print ("Table created successfully")
-    
-    conn.close()
-    
-def insert_db_values(conn):
-    """ Here you Enter your data to INSERT data to the db"""
-    conn.execute()
 
-    conn.commit()
-    print("Records updated ")
-    conn.close()
 
-   
-create_database()
-insert_db_values(conn)
 
+""" many_customers = [
+    ('John','Doe','johndoe@gmail.com'),
+    ('Andy','Jones','andyjones@gmail.com'),
+    ('Jake','Jess','jakejess@gmail.com'),] """
+# create a table
+# Insert multiple data
+""" c.executemany("INSERT INTO customers VALUES (?,?,?)",many_customers) """
+
+
+
+print('Query executed successfully')
+
+# DATA TYPE:
+# INTEGER
+# REAL
+# TEXT
+# BLOB
+
+#Commit our command
+conn.commit()
+ 
+# Close our connection
+conn.close()
 
 
