@@ -1,2 +1,0 @@
-This is a Student Registration form created with Tkinter
-data are stored in an excel file.
